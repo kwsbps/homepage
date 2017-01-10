@@ -1,0 +1,159 @@
+<?php 
+
+include_once "../comm/db_info.php";
+
+
+function ErrorMessage($message, $type = "on")
+{
+	echo "<script> alert('$message'); ";
+	if ($type == "on") echo " history.back(); ";
+	echo "</script>";
+	exit;
+}
+
+$ap_name =trim(strip_tags($_POST[ap_name]));
+$ap_jumin1 =trim(strip_tags($_POST[ap_jumin1]));
+$ap_jumin2 =trim(strip_tags($_POST[ap_jumin2]));
+$ap_sex =trim(strip_tags($_POST[ap_sex]));
+$ap_email =trim(strip_tags($_POST[ap_email]));
+$ap_local =trim(strip_tags($_POST[ap_local]));
+$ap_job =trim(strip_tags($_POST[ap_job]));
+$ap_income =trim(strip_tags($_POST[ap_income]));
+$ap_hope =trim(strip_tags($_POST[ap_hope]));
+$ap_hp1 =trim(strip_tags($_POST[ap_hp1])); 
+$ap_hp2 =trim(strip_tags($_POST[ap_hp2])); 
+$ap_hp3 =trim(strip_tags($_POST[ap_hp3])); 
+$ap_due =trim(strip_tags($_POST[ap_due]));
+$ap_rule =trim(strip_tags($_POST[ap_rule]));
+$ap_car =trim(strip_tags($_POST[ap_car]));
+$ap_rb =trim(strip_tags($_POST[ap_rb]));
+$ap_rb1 =trim(strip_tags($_POST[ap_rb1]));
+$ap_rb2 =trim(strip_tags($_POST[ap_rb2]));
+$ap_credit_1 =trim(strip_tags($_POST[ap_credit_1]));
+$ap_credit_2 =trim(strip_tags($_POST[ap_credit_2]));
+$ap_credit_3 =trim(strip_tags($_POST[ap_credit_3]));
+$ap_card_1 =trim(strip_tags($_POST[ap_card_1]));
+$ap_card_2 =trim(strip_tags($_POST[ap_card_2]));
+$ap_card_3 =trim(strip_tags($_POST[ap_card_3]));
+$ap_cash_1 =trim(strip_tags($_POST[ap_cash_1]));
+$ap_cash_2 =trim(strip_tags($_POST[ap_cash_2]));
+$ap_cash_3 =trim(strip_tags($_POST[ap_cash_3]));
+$ap_house_1 =trim(strip_tags($_POST[ap_house_1]));
+$ap_house_2 =trim(strip_tags($_POST[ap_house_2]));
+$ap_house_3 =trim(strip_tags($_POST[ap_house_3]));
+$ap_lent_1 =trim(strip_tags($_POST[ap_lent_1]));
+$ap_lent_2 =trim(strip_tags($_POST[ap_lent_2]));
+$ap_lent_3 =trim(strip_tags($_POST[ap_lent_3]));
+$ap_loan_1 =trim(strip_tags($_POST[ap_loan_1]));
+$ap_loan_2 =trim(strip_tags($_POST[ap_loan_2]));
+$ap_loan_3 =trim(strip_tags($_POST[ap_loan_3]));
+$ap_etc_1 =trim(strip_tags($_POST[ap_etc_1]));
+$ap_etc_2 =trim(strip_tags($_POST[ap_etc_2]));
+$ap_etc_3 =trim(strip_tags($_POST[ap_etc_3]));
+
+
+$ip = $_SERVER["REMOTE_ADDR"];
+
+$rs_count=mysql_query("SELECT max(ap_no) mno FROM apploan ",$conn);
+$rs_row=mysql_fetch_row($rs_count);
+
+$ap_id = $rs_row[0]+1;
+
+
+
+$sql = "insert into apploan(";
+$sql .= "ap_id,";
+$sql .= "ap_name,";
+$sql .= "ap_jumin1,";
+$sql .= "ap_jumin2,";
+$sql .= "ap_sex,";
+$sql .= "ap_email,";
+$sql .= "ap_local,";
+$sql .= "ap_job,";
+$sql .= "ap_income,";
+$sql .= "ap_hope,";
+$sql .= "ap_hp1,";
+$sql .= "ap_hp2,";
+$sql .= "ap_hp3,";
+$sql .= "ap_due,";
+$sql .= "ap_rule,";
+$sql .= "ap_car,";
+$sql .= "ap_rb,";
+$sql .= "ap_rb1,";
+$sql .= "ap_rb2,";
+$sql .= "ap_credit_1,";
+$sql .= "ap_credit_2,";
+$sql .= "ap_credit_3,";
+$sql .= "ap_card_1,";
+$sql .= "ap_card_2,";
+$sql .= "ap_card_3,";
+$sql .= "ap_cash_1,";
+$sql .= "ap_cash_2,";
+$sql .= "ap_cash_3,";
+$sql .= "ap_house_1,";
+$sql .= "ap_house_2,";
+$sql .= "ap_house_3,";
+$sql .= "ap_lent_1,";
+$sql .= "ap_lent_2,";
+$sql .= "ap_lent_3,";
+$sql .= "ap_loan_1,";
+$sql .= "ap_loan_2,";
+$sql .= "ap_loan_3,";
+$sql .= "ap_etc_1,";
+$sql .= "ap_etc_2,";
+$sql .= "ap_etc_3,ap_status,ap_datetime,ap_ip) values (";
+$sql .= "'".$ap_id."',";
+$sql .= "'".$ap_name."',";
+$sql .= "'".$ap_jumin1."',";
+$sql .= "'".$ap_jumin2."',";
+$sql .= "'".$ap_sex."',";
+$sql .= "'".$ap_email."',";
+$sql .= "'".$ap_local."',";
+$sql .= "'".$ap_job."',";
+$sql .= "'".$ap_income."',";
+$sql .= "'".$ap_hope."',";
+$sql .= "'".$ap_hp1."',";
+$sql .= "'".$ap_hp2."',";
+$sql .= "'".$ap_hp3."',";
+$sql .= "'".$ap_due."',";
+$sql .= "'".$ap_rule."',";
+$sql .= "'".$ap_car."',";
+$sql .= "'".$ap_rb."',";
+$sql .= "'".$ap_rb1."',";
+$sql .= "'".$ap_rb2."',";
+$sql .= "'".$ap_credit_1."',";
+$sql .= "'".$ap_credit_2."',";
+$sql .= "'".$ap_credit_3."',";
+$sql .= "'".$ap_card_1."',";
+$sql .= "'".$ap_card_2."',";
+$sql .= "'".$ap_card_3."',";
+$sql .= "'".$ap_cash_1."',";
+$sql .= "'".$ap_cash_2."',";
+$sql .= "'".$ap_cash_3."',";
+$sql .= "'".$ap_house_1."',";
+$sql .= "'".$ap_house_2."',";
+$sql .= "'".$ap_house_3."',";
+$sql .= "'".$ap_lent_1."',";
+$sql .= "'".$ap_lent_2."',";
+$sql .= "'".$ap_lent_3."',";
+$sql .= "'".$ap_loan_1."',";
+$sql .= "'".$ap_loan_2."',";
+$sql .= "'".$ap_loan_3."',";
+$sql .= "'".$ap_etc_1."',";
+$sql .= "'".$ap_etc_2."',";
+$sql .= "'".$ap_etc_3."',";
+$sql .= "'".$ap_status."',";
+$sql .= "now(),'$ip')";
+
+$sql1="insert into member_list (worker_id,save_status,branch_code,name,ssn11,ssn12,email,app_money,a_time,save_time,ratio)values('"."beyond"."','Y','100','".$ap_name."','".$ap_jumin1."','".$ap_jumin2."','".$ap_email."','".$ap_hope."',".time().",".time().",10)";
+
+$rs_1=mysql_query($sql,$conn)or die(' 저장하는데 실패하였습니다.');
+
+if($rs_1){
+?>
+ <meta http-equiv='refresh' content='0;url=/loan/loanComplete.php'>
+<?php
+}else{
+ ErrorMessage('대단히 죄송합니다. 오류로인해 다시 대출신청해주세요.');	
+}
+?>

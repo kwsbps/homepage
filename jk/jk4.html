@@ -1,0 +1,117 @@
+<DOCTYPE>
+<html>
+<meta charset="utf-8">
+<title>테스트 화면</title>
+<script src="../js/jquery-2.1.4.min.js"></script><!-- jQuery library -->
+<script type="text/javascript">
+
+
+$.get('jk4.xml', function (data) {
+
+	var l = $(data).find('> data > language');
+	var t = $('#table_1');
+		l.each(function (i) {
+			var foo = $(this);
+			foo.children().each(function (j) {
+						var text = $(this).text();
+						var tr = t.find('tr').eq(i+1);
+						var td = tr.find('> td').eq(j+1);
+						td.text(text);
+				});
+			});
+		}, 'xml');
+
+
+	/*$("#member").on('submit', function () {
+		       
+		var d = $(this).serialize();
+
+		$.ajax
+		({
+			url:"jk4-1.php",
+			type:"post",
+			data:d,
+			success : function (result) 
+			{
+				$("#txt1").text(result);
+			}
+		});
+		return false; // action 주소로 빠지는것 방지
+	});
+	*/
+	/*$.ajax
+	({
+		url:"jk4.xml",
+		dataType:"xml",
+		success : function (result) 
+		{
+			if ($(result).find("rank").length > 0) 
+			{
+				$(result).find("rank").each( function () 
+				{
+					var name = $(this).find("k").text();
+					var result = "<li>" + name + "</li>";
+
+					$("#wrap ol").append(result);
+				});
+			}
+		}		
+	});
+}); 
+*/
+</script>
+
+<body>
+<form action="jk4-1.php" method="post" name="member" id="member">
+	<fieldset>
+		<legend>회원가입</legend>
+		<p>
+			<label for="user_name">이름</label>
+			<input type="text" name="user_name" id="user_name" value="유저 네임" onblur="if(this.value == '') this.value='유저 네임'">
+		</p> 
+		<p><input type="submit" value="확인"></p>
+	</fieldset>
+</form>
+
+<div id="wrapper">
+	<div id="controller">
+		<input class="left" type="button" value="왼쪽">
+		<input class="right" type="button" value="오른쪽">
+	</div>
+	<div id="box"><img src="/img/common/icoCheckComplete.png"></div>
+</div>
+
+<h1 id="txt1"></h1>
+<h1 id="txt2"></h1>
+	
+<div id="wrap">
+	<ol></ol>
+</div>
+
+<div id="ajax">
+	<h2>영역에 맞는 값 입력</h2>
+	<table id="table_1" border="1" cellpadding="10" cellspacing="0">
+	<tbody>
+		<tr class="head">
+			<td>Name</td>
+			<td>Value</td>
+			<td>VER</td>
+			<td>From</td>
+		</tr>
+		<tr>
+			<td>C++</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>JAVA</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+</body>
+</html>
